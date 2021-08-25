@@ -1,16 +1,19 @@
+import { CloudWatchClientConfig } from "@aws-sdk/client-cloudwatch";
 import { MetricPublisher } from "./metrics.client";
 
 class ExampleMetric extends MetricPublisher {
-    constructor() {
+    constructor(configuration?: CloudWatchClientConfig) {
         super('ExampleMetric', 'Example/Metric')
     }
 }
 
-const createNotificationFailed = (): ExampleMetric => {
-    return new ExampleMetric();
+const createExampleMetric = (configuration?: CloudWatchClientConfig): ExampleMetric => {
+    return new ExampleMetric(configuration);
 }
 
 
-const notificationFailedMetric: MetricPublisher = createNotificationFailed();
+const exampleMetric: MetricPublisher = createExampleMetric({
+    region: 'us-east-2',
+});
 
-export default notificationFailedMetric;
+export default exampleMetric;

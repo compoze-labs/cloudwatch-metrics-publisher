@@ -12,20 +12,21 @@ export abstract class MetricPublisher {
     protected namespace: string;
     protected environment: string;
     protected configuration?: CloudWatchClientConfig;
+    private client: CloudWatchClient;
 
     constructor(metricName: string, namespace: string, configuration?: CloudWatchClientConfig) {
         this.metricName = metricName;
         this.namespace = namespace;
         this.environment = process.env.NODE_ENV;
-        this.configuration = configuration;
+        this.client = new CloudWatchClient(this.getOrDefaultConfig());
+
     }
 
 
     public async publish(count?: number): Promise<void> {
 
         try {
-            const config: CloudWatchClientConfig = this.getOrDefaultConfig()
-            const client = new CloudWatchClient(config);
+
 
             logger.debug('publishing metric');
 
@@ -43,7 +44,7 @@ export abstract class MetricPublisher {
                 Namespace: this.namespace
             });
 
-            await client.send(command);
+            await this.client.send(command);
             logger.debug('successfully published metric');
 
         } catch (err) {
@@ -51,6 +52,7 @@ export abstract class MetricPublisher {
             logger.warn('Failed to publish metric ', err);
             return;
         }
+
     }
 
 

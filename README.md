@@ -5,7 +5,7 @@ Repository that contains example for using @aws-sdk/client-cloudwatch to publish
 ## Prerequisites
 
 1. Install the cloudwatch sdk: `npm i @aws-sdk/client-cloudwatch` or `yarn add @aws-sdk/client-cloudwatch`
-2. Install winston ```npm i winston` or `yarn add winston`
+2. Install winston `npm i winston` or `yarn add winston`
 3. Configure application permissions to publish metrics. Example CloudFormation Policy:
 
 ```yaml

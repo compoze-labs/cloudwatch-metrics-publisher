@@ -1,0 +1,26 @@
+{
+  "name": "cloudwatch-metrics-publisher",
+  "version": "1.0.0",
+  "description": "Example cloudwatch publisher",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/compoze-labs/cloudwatch-metrics-publisher.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/compoze-labs/cloudwatch-metrics-publisher/issues"
+  },
+  "homepage": "https://github.com/compoze-labs/cloudwatch-metrics-publisher#readme",
+  "dependencies": {
+    "@aws-sdk/client-cloudwatch": "^3.27.0",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^16.7.1"
+  }
+}

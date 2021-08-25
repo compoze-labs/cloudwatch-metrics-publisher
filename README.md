@@ -1,6 +1,6 @@
 # cloudwatch-metrics-publisher
 
-Repository that contains example for using @aws-sdk/client-cloudwatch to publish metrics with NodeJS and Typescript. This is not currently a publish library, so in order to use this pattern you can simply copy the necessary code into your repository. If there is interest a library could be published.
+Repository that contains example for using @aws-sdk/client-cloudwatch to publish metrics with NodeJS and Typescript. This is not currently a published library, so in order to use this pattern you can simply copy the necessary code into your repository. If there is interest a library could be published.
 
 ## Prerequisites
 

@@ -1,11 +1,12 @@
 # cloudwatch-metrics-publisher
 
-Repository that contains example for using @aws-sdk/client-cloudwatch to publish metrics with NodeJS and Typescript.
+Repository that contains example for using @aws-sdk/client-cloudwatch to publish metrics with NodeJS and Typescript. This is not currently a publish library, so in order to use this pattern you can simply copy the necessary code into your repository. If there is interest a library could be published.
 
 ## Prerequisites
 
 1. Install the cloudwatch sdk: `npm i @aws-sdk/client-cloudwatch` or `yarn add @aws-sdk/client-cloudwatch`
-2. Configure application permissions to publish metrics. Example CloudFormation Policy:
+2. Install winston ```npm i winston` or `yarn add winston`
+3. Configure application permissions to publish metrics. Example CloudFormation Policy:
 
 ```yaml
 LambdaCloudwatchPublishMetricsPolicy:
@@ -64,13 +65,13 @@ const doSomething = () => {
 };
 ```
 
-4. Configuration: By default, the metrics classes will default to the local AWS role and us-east-1 region. In order to supply custom configuration, update the create method to pass in your customer [CloudWatchClientConfig](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-cloudwatch/interfaces/cloudwatchclientconfig.html). 
+4. Configuration: By default, the metrics classes will default to the local AWS role and us-east-1 region. In order to supply custom configuration, update the create method to pass in your customer [CloudWatchClientConfig](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-cloudwatch/interfaces/cloudwatchclientconfig.html).
 
 for example, if you want to update the region that you are publishing your metrics to, simply provide a custom configuration with your target region. It is worth noting that it is generally a good idea to provide the region at runtime (via something like an Environment Variable) for maximum portability.
-```typescript
 
+```typescript
 const exampleMetric: MetricPublisher = createExampleMetric({
-    region: 'us-east-2',
+  region: "us-east-2",
 });
 ```
 
@@ -80,24 +81,23 @@ The inspiration for the usage of a metric class is based on the winston implemen
 
 ```typescript
 const logger: winston.Logger = winston.createLogger({
-    level: 'debug',
-    format: winston.format.combine(
-        winston.format.splat(),
-        winston.format.simple(),
-        winston.format.json()
-    ),
-    defaultMeta: { service: 'notifications-module' },    
-    transports: [
-        new winston.transports.Console({
-            format: winston.format.timestamp()
-        })
-    ]
+  level: "debug",
+  format: winston.format.combine(
+    winston.format.splat(),
+    winston.format.simple(),
+    winston.format.json()
+  ),
+  defaultMeta: { service: "notifications-module" },
+  transports: [
+    new winston.transports.Console({
+      format: winston.format.timestamp(),
+    }),
+  ],
 });
-
 
 export default logger;
 ```
 
 This allows for simple import and usage across the app, without having to worry about passing around dependencies.
 
-Currently, the client is configured **not** to throw an error if it failed to publish the metric, rather it logs a warning message of ```Failed to publish metric```. The decision was made that, should a metric fail to publish, it should not fail the request entirely.
+Currently, the client is configured **not** to throw an error if it failed to publish the metric, rather it logs a warning message of `Failed to publish metric`. The decision was made that, should a metric fail to publish, it should not fail the request entirely.

@@ -65,9 +65,7 @@ const doSomething = () => {
 };
 ```
 
-4. Configuration: By default, the metrics classes will default to the local AWS role and us-east-1 region. In order to supply custom configuration, update the create method to pass in your customer [CloudWatchClientConfig](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-cloudwatch/interfaces/cloudwatchclientconfig.html).
-
-for example, if you want to update the region that you are publishing your metrics to, simply provide a custom configuration with your target region. It is worth noting that it is generally a good idea to provide the region at runtime (via something like an Environment Variable) for maximum portability.
+4. Configuration: By default, the metrics classes will default to the local AWS role and us-east-1 region. In order to supply custom configuration, update the create method to pass in your customer [CloudWatchClientConfig](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-cloudwatch/interfaces/cloudwatchclientconfig.html).   for example, if you want to update the region that you are publishing your metrics to, simply provide a custom configuration with your target region. It is worth noting that it is generally a good idea to provide the region at runtime (via something like an Environment Variable) for maximum portability.
 
 ```typescript
 const exampleMetric: MetricPublisher = createExampleMetric({

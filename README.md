@@ -27,7 +27,7 @@ Note that this must be attached to the Role that your application is assuming. [
 
 ## Usage
 
-In order to publish a new metric, you simply create a new class that extends the [MetricPublisher](metrics.client.ts) class, and export the class instantiation
+In order to publish a new metric, you simply create a new class that extends the [MetricPublisher](metrics.client.ts) class, and export the class instantiation. A full example can be found here [example.metric.ts](example.metric.ts)
 
 1. After extending the class, ensure that you provide a unique MetricName and Namespace. A description of Cloudwatch terms and concepts can be found [here](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html). Example:
 

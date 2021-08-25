@@ -85,7 +85,7 @@ const logger: winston.Logger = winston.createLogger({
     winston.format.simple(),
     winston.format.json()
   ),
-  defaultMeta: { service: "notifications-module" },
+  defaultMeta: { service: "app-module" },
   transports: [
     new winston.transports.Console({
       format: winston.format.timestamp(),
